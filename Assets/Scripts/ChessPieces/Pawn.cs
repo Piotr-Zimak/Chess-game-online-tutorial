@@ -37,6 +37,11 @@ public class Pawn : ChessPiece
     public override SpecialMove GetSpecialMoves(ref ChessPiece[,] board, ref List<Vector2Int[]> moveList, ref List<Vector2Int> availableMoves)
     {
         int direction = (team == 0) ? 1 : -1;
+        if((team == 0 && currentY == 6) || (team == 1 && currentY == 1))
+        {
+            return SpecialMove.Promotion;
+        }
+
 
         // En Passant
         if(moveList.Count > 0)
@@ -65,8 +70,6 @@ public class Pawn : ChessPiece
                 }
             }
         }
-
-
 
         return SpecialMove.None;
     }
